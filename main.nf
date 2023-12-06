@@ -17,7 +17,7 @@ process pim {
     container 'ubuntu:latest'
     cpus 1
     memory '1 GB'
-    disk '1 GB'
+    disk '100 MB'
 
     input:
     val xyz
@@ -34,7 +34,7 @@ process pom {
     container 'ubuntu:latest'
     cpus 1
     memory '1 GB'
-    disk '1 GB'
+    disk '100 MB'
 
     input:
     val xyz
