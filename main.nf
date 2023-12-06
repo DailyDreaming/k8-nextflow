@@ -15,39 +15,43 @@ workflow {
 
 process pim {
     container 'ubuntu:latest'
+
     resources:
-    cpus 1
-    memory '1 GB'
-    disk '100 MB'
+        cpus 1
+        memory '1 GB'
+        disk '100 MB'
 
     input:
-    val xyz
+        val xyz
 
     output:
-    path 'o.txt'
+        path 'o.txt'
 
-    """
-    echo "Running PIM! UUID: ${xyz}" &> o.txt
-    """
+    script:
+        """
+        echo "Running PIM! UUID: ${xyz}" &> o.txt
+        """
 }
 
 process pom {
     container 'ubuntu:latest'
+
     resources:
-    cpus 1
-    memory '1 GB'
-    disk '100 MB'
+        cpus 1
+        memory '1 GB'
+        disk '100 MB'
 
     input:
-    val xyz
-    path data
+        val xyz
+        path data
 
     output:
-    path 'n.txt'
+        path 'n.txt'
 
-    """
-    echo "Running POM! UUID: ${xyz} AND " &> n.txt
-    cat ${data} >> n.txt
-    """
+    script:
+        """
+        echo "Running POM! UUID: ${xyz} AND " &> n.txt
+        cat ${data} >> n.txt
+        """
 }
 
