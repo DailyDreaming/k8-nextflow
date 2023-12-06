@@ -15,9 +15,9 @@ workflow {
 
 process pim {
     container 'ubuntu:latest'
-//    cpus 1
-//    memory '1 GB'
-//    disk '1 GB'
+    cpus 1
+    memory '1 GB'
+    disk '1 GB'
 
     input:
     val xyz
@@ -32,11 +32,9 @@ process pim {
 
 process pom {
     container 'ubuntu:latest'
-
-    // Define the resource requirements
-//    cpus 1
-//    memory '1 GB'
-//    disk '1 GB'
+    cpus 1
+    memory '1 GB'
+    disk '1 GB'
 
     input:
     val xyz
