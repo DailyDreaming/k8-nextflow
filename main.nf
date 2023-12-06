@@ -15,6 +15,7 @@ workflow {
 
 process pim {
     container 'ubuntu:latest'
+    resources:
     cpus 1
     memory '1 GB'
     disk '100 MB'
@@ -32,6 +33,7 @@ process pim {
 
 process pom {
     container 'ubuntu:latest'
+    resources:
     cpus 1
     memory '1 GB'
     disk '100 MB'
