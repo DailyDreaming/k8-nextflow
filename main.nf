@@ -14,7 +14,7 @@ workflow {
 }
 
 process pim {
-    container 'ubuntu:latest'
+    container 'podasaurus'
 
     resources:
         cpus '1'
@@ -34,7 +34,7 @@ process pim {
 }
 
 process pom {
-    container 'ubuntu:latest'
+    container 'podasaurus'
 
     resources:
         cpus '1'
