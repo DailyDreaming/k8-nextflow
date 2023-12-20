@@ -15,11 +15,9 @@ workflow {
 
 process pim {
     container 'ubuntu:22.04'
-
-    resources:
-        cpus '1'
-        memory '100 MB'
-        // disk '100 MB'
+    cpus '1'
+    memory '100 MB'
+    // disk '100 MB'
 
     input:
         val xyz
@@ -35,11 +33,9 @@ process pim {
 
 process pom {
     container 'ubuntu:22.04'
-
-    resources:
-        cpus '1'
-        memory '100 MB'
-        // disk '100 MB'
+    cpus '1'
+    memory '100 MB'
+    // disk '100 MB'
 
     input:
         val xyz
