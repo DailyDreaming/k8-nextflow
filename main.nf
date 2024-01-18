@@ -17,7 +17,7 @@ process pim {
     container 'ubuntu:22.04'
     cpus '1'
     memory '100 MB'
-    // disk '100 MB'
+    disk '100 MB'
 
     input:
         val xyz
@@ -35,7 +35,7 @@ process pom {
     container 'ubuntu:22.04'
     cpus '1'
     memory '100 MB'
-    // disk '100 MB'
+    disk '100 MB'
 
     input:
         val xyz
