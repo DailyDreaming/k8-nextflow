@@ -50,4 +50,3 @@ process pom {
         cat ${data} >> n.txt
         """
 }
-
