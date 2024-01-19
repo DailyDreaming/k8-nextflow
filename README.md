@@ -1,6 +1,6 @@
-## Running Nextflow on the [PRP](https://portal.nrp-nautilus.io)
+## Running Nextflow on the [National Research Platform (NRP)](https://portal.nrp-nautilus.io)
 
-#### Instructions for running a toy nextflow workflow on the [PRP kubernetes cluster](https://portal.nrp-nautilus.io) (examples use the `braingeneers` namespace; this should be changed to the relevant namespace for your org in both the commands below and the contents of the yml files included).
+#### Instructions for running a toy nextflow workflow on the [NRP kubernetes cluster](https://portal.nrp-nautilus.io) (examples use the `braingeneers` namespace; this should be changed to the relevant namespace for your org in both the commands below and the contents of the yml files included).
 
 ### SETUP
 1. First, create a [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/):
