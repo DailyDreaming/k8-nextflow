@@ -98,4 +98,4 @@ Then run the workflow with the following command:
 
 NOTE: The toy workflow tests two processes sharing a file, which should test shared access to the same file space [this is the purpose of the [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)].
 
-NOTE: FUSE requires a plug-in installed on each worker, and so does not seem to be currently feasible without security considerations and cluster-wide changes.
+NOTE: [FUSE](https://github.com/s3fs-fuse/s3fs-fuse) requires a plug-in installed on each worker, and so does not seem to be currently feasible without security considerations and cluster-wide changes.
