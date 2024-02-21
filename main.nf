@@ -48,7 +48,7 @@ process pem {
         """
         echo "Running PEM! UUID: ${xyz} AND " &> n.txt
         cat ${data} >> n.txt
-        /usr/local/bin/aws s3 cp n.txt s3://braingeneers/test/n.txt
+        aws s3 cp n.txt s3://braingeneers/test/n.txt
         echo "Running PEM once again with feeling! UUID: ${xyz} AND " &> n.txt
         cat ${data} >> n.txt
         """
