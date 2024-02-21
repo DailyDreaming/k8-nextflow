@@ -48,6 +48,6 @@ process pom {
         """
         echo "Running POM! UUID: ${xyz} AND " &> n.txt
         cat ${data} >> n.txt
-        aws s3 ls s3://braingeneers/
+        aws s3 cp n.txt s3://braingeneers/test/n.txt
         """
 }
