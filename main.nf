@@ -14,7 +14,7 @@ workflow {
 }
 
 process pim {
-    container ' quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
+    container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
     disk '100 MB'
@@ -32,7 +32,7 @@ process pim {
 }
 
 process pem {
-    container ' quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
+    container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
     disk '100 MB'
