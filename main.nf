@@ -1,7 +1,7 @@
 // If you want the workflow to be triggered by an MQTT message you must define the MQTT_TOPIC_TRIGGER variable
 MQTT_TOPIC_TRIGGER = 'experiments/upload'
 
-file('s3://braingeneers/').list().each{ println it } 
+// file('s3://braingeneers/').list().each{ println it } 
 
 // Define other variables that should be passed to the script, if the workflow is triggered by MQTT these
 // variables must be available in the MQTT payload as a JSON dictionary with the variable name. For example
@@ -20,7 +20,7 @@ process pim {
     cpus '1'
     memory '100 MB'
     disk '100 MB'
-    publishDir 's3://braingeneers/test/'
+    publishDir 's3://braingeneers/'
 
     input:
         val xyz
@@ -39,7 +39,7 @@ process pem {
     cpus '1'
     memory '100 MB'
     disk '100 MB'
-    publishDir 's3://braingeneers/test/'
+    publishDir 's3://braingeneers/'
 
     input:
         val xyz
