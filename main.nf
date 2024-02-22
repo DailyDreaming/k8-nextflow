@@ -20,6 +20,7 @@ process pim {
     cpus '1'
     memory '100 MB'
     disk '100 MB'
+    publishDir 's3://braingeneers/test/'
 
     input:
         val xyz
@@ -38,6 +39,7 @@ process pem {
     cpus '1'
     memory '100 MB'
     disk '100 MB'
+    publishDir 's3://braingeneers/test/'
 
     input:
         val xyz
