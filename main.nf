@@ -1,12 +1,3 @@
-// If you want the workflow to be triggered by an MQTT message you must define the MQTT_TOPIC_TRIGGER variable
-MQTT_TOPIC_TRIGGER = 'experiments/upload'
-
-// file('s3://braingeneers/').list().each{ println it } 
-
-// Define other variables that should be passed to the script, if the workflow is triggered by MQTT these
-// variables must be available in the MQTT payload as a JSON dictionary with the variable name. For example
-// for params.UUID the MQTT payload should include at a minimum {"UUID": "2020-01-01-e-demo"}
-// params.UUID = 'not-set'
 params.xyz = 'notset'
 
 workflow {
@@ -16,7 +7,7 @@ workflow {
 }
 
 process pim {
-    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: false
+    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: true
     container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
@@ -35,7 +26,7 @@ process pim {
 }
 
 process pem {
-    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: false
+    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: true
     container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
