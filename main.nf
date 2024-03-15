@@ -16,6 +16,7 @@ workflow {
 }
 
 process pim {
+    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: false
     container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
@@ -34,6 +35,7 @@ process pim {
 }
 
 process pem {
+    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: false
     container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
