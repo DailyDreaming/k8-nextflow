@@ -37,11 +37,11 @@ process pem {
         path data
 
     output:
-        path 'n.txt'
+        path 'tea.txt'
 
     script:
         """
-        echo "Running PEM! UUID: ${xyz} AND " &> n.txt
-        cat ${data} >> n.txt
+        echo "Running PEM! UUID: ${xyz} AND " &> tea.txt
+        cat ${data} >> tea.txt
         """
 }
