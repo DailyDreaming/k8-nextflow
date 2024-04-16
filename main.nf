@@ -7,7 +7,7 @@ workflow {
 }
 
 process pim {
-    publishDir "s3://braingeneers/test/", mode: 'copy', overwrite: true
+    publishDir "s3://braingeneersdev/test/", mode: 'copy', overwrite: true
     container 'quay.io/ucsc_cgl/mqtt-nextflow-s3:0.0'
     cpus '1'
     memory '100 MB'
