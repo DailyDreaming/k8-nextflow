@@ -43,7 +43,7 @@ wget https://raw.githubusercontent.com/DailyDreaming/k8-nextflow/master/nextflow
 ./nextflow kuberun https://github.com/DailyDreaming/k8-nextflow -v whimvol:/workspace -head-cpus 1 -head-memory 1024Mi
 ```
 
-To verify, one can check the output deposited in `s3://braingeneersdev/test/`:
+4. Once complete, the output should be deposited in `s3://braingeneersdev/test/`:
 
 ```bash
 (venv) quokka@qcore 01:22 PM ~/git/mission_control$ aws s3 cp s3://braingeneersdev/test/tea.txt .
