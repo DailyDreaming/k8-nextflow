@@ -37,7 +37,7 @@ sudo chmod 1777 nextflow
 wget https://raw.githubusercontent.com/DailyDreaming/k8-nextflow/master/nextflow.config
 ```
 
-Then run the workflow with the following command (assuming a PVC called "whimvol" exists):
+3. Then run the workflow with the following command (assuming a PVC called "whimvol" exists):
 
 ```commandline
 ./nextflow kuberun https://github.com/DailyDreaming/k8-nextflow -v whimvol:/workspace -head-cpus 1 -head-memory 1024Mi
