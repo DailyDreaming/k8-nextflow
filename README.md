@@ -1,81 +1,28 @@
-## Running Nextflow on the [National Research Platform (NRP)](https://portal.nrp-nautilus.io)
+## A Toy Nextflow Workflow for Testing a Shared PVC on the [National Research Platform (NRP)](https://portal.nrp-nautilus.io)
 
-#### Instructions for running a toy nextflow workflow on the [NRP kubernetes cluster](https://portal.nrp-nautilus.io) (examples use the `braingeneers` namespace; this should be changed to the relevant namespace for your org in both the commands below and the contents of the yml files included).
+This workflow launches two jobs that must successfully pass a file between them to produce a final output.    
 
-### SETUP
-1. First, create a [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/):
+### Running as a Nextflow Workflow triggered by an MQTT message
 
-```commandline
-kubectl apply -f pvc.yml
+This workflow was written specifically to be tested in and be run by the service here: https://github.com/braingeneers/mission_control/tree/main/nextflow
+
+To do this, one must publish an MQTT message with the following JSON file contents:
+
+```json
+{"url": "https://github.com/DailyDreaming/k8-nextflow", "xyz": "make_tea_and_not_war"}
 ```
 
-2. Second, create a service account:
+If the file is called `k8-params.json`, one can run/trigger this workflow via:
 
-```commandline
-kubectl create serviceaccount nextflow-sa -n braingeneers
+```bash
+mosquitto_pub -h mqtt.braingeneers.gi.ucsc.edu \
+              -t "workflow/start" \
+              -u braingeneers \
+              -P $(awk '/profile-key/ {print $NF}' ~/.aws/credentials) \
+              -f k8-params.json
 ```
 
-3. Create the necessary roles that nextflow needs:
-
-```commandline
-kubectl apply -f resources/configmap_role.yml
-kubectl apply -f resources/jobs_role.yml
-kubectl apply -f resources/pods_role.yml
-kubectl apply -f resources/pods_delete_role.yml
-kubectl apply -f resources/pvc_role.yml
-```
-
-4. Create role bindings to attach those roles to the service account:
-
-```commandline
-kubectl apply -f resources/configmap_rolebinding.yml
-kubectl apply -f resources/jobs_rolebinding.yml
-kubectl apply -f resources/pods_rolebinding.yml
-kubectl apply -f resources/pods_delete_rolebinding.yml
-kubectl apply -f resources/pvc_rolebinding.yml
-```
-
-We now have a service account that should have the permissions necessary to run a nextflow workflow.
-
-5. Create a secret token for the service account (note: this yml produces a token that does not expire):
-
-```commandline
-kubectl apply -f resources/sa-secret.yml
-```
-
-6. Generate a kube config with the above secret token (`GENERATED-SA-TOKEN`).  The token can be generated with:
-
-```commandline
-kubectl get secrets nextflow-sa -o jsonpath='{.data.token}' | base64 --decode
-```
-
-7. You'll also need `CLUSTER-TOKEN`, `SERVER_IP`, and `SERVER_PORT`.  These should already be in your current working kube config file.  Copy and paste them over.
-
-The kube config should look like:
-
-```yaml
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: {CLUSTER-TOKEN}
-    server: https://{SERVER_IP}:{SERVER_PORT}
-  name: nautilus
-contexts:
-- context:
-    cluster: nautilus
-    namespace: braingeneers
-    user: nextflow-sa
-  name: nautilus
-current-context: nautilus
-kind: Config
-preferences: {}
-users:
-- name: nextflow-sa
-  user:
-    token: {GENERATED-SA-TOKEN}
-```
-
-### RUNNING A WORKFLOW
+### Running as a Nextflow Workflow locally
 
 1. If you don't have it installed already, download the latest nextflow binary and make it executable:
 
@@ -90,12 +37,12 @@ sudo chmod 1777 nextflow
 wget https://raw.githubusercontent.com/DailyDreaming/k8-nextflow/master/nextflow.config
 ```
 
-Then run the workflow with the following command:
+Then run the workflow with the following command (assuming a PVC called "whimvol" exists):
 
 ```commandline
-./nextflow kuberun https://github.com/DailyDreaming/k8-nextflow -v whimvol:/workspace -head-cpus 1 -head-memory 256Mi
+./nextflow kuberun https://github.com/DailyDreaming/k8-nextflow -v whimvol:/workspace -head-cpus 1 -head-memory 1024Mi
 ```
 
-NOTE: The toy workflow tests two processes sharing a file, which should test shared access to the same file space [this is the purpose of the [PersistentVolumeClaim (PVC)](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)].
+### More Detailed Instructions on Running Nextflow on the [National Research Platform (NRP)](https://portal.nrp-nautilus.io)
 
-NOTE: [FUSE](https://github.com/s3fs-fuse/s3fs-fuse) requires a plug-in installed on each worker, and so does not seem to be currently feasible without security considerations and cluster-wide changes.
+See: https://github.com/braingeneers/mission_control/tree/main/nextflow/infra
