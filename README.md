@@ -43,6 +43,17 @@ wget https://raw.githubusercontent.com/DailyDreaming/k8-nextflow/master/nextflow
 ./nextflow kuberun https://github.com/DailyDreaming/k8-nextflow -v whimvol:/workspace -head-cpus 1 -head-memory 1024Mi
 ```
 
+To verify, one can check the output deposited in `s3://braingeneersdev/test/`:
+
+```bash
+(venv) quokka@qcore 01:22 PM ~/git/mission_control$ aws s3 cp s3://braingeneersdev/test/tea.txt .
+    download: s3://braingeneersdev/test/tea.txt to ./tea.txt
+
+(venv) quokka@qcore 01:23 PM ~/git/mission_control$ cat tea.txt
+    Running PEM! UUID: make_tea_and_not_war AND 
+    Running PIM! UUID: make_tea_and_not_war
+```
+
 ### More Detailed Instructions on Running Nextflow on the [National Research Platform (NRP)](https://portal.nrp-nautilus.io)
 
 See: https://github.com/braingeneers/mission_control/tree/main/nextflow/infra
